@@ -5,20 +5,24 @@
  */
 package View;
 
+import java.util.Random;
+
 /**
  *
  * @author LAB03M05
  */
 public class Jokenpo_GUI extends javax.swing.JFrame {
+    int contplayer=0, contbot=0;
+    String player = "0", bot="0";
 
-    /**
-     * Creates new form Jokenpo_GUI
-     */
     public Jokenpo_GUI() {
         initComponents();
         PapelBot.setVisible(false);
         PedraBot.setVisible(false);
         TesouraBot.setVisible(false);
+        tryagain.setVisible(false);
+        PontBot.setText(bot);
+        PontPlayer.setText(player);
     }
 
     /**
@@ -42,8 +46,15 @@ public class Jokenpo_GUI extends javax.swing.JFrame {
         PedraButton = new javax.swing.JButton();
         PontPlayer = new javax.swing.JLabel();
         PontBot = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        tryagain = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        panelImage1 = new org.edisoncor.gui.panel.PanelImage();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setPreferredSize(new java.awt.Dimension(300, 400));
         getContentPane().setLayout(null);
 
@@ -146,26 +157,200 @@ public class Jokenpo_GUI extends javax.swing.JFrame {
         TesouraBot.setBounds(40, 230, 100, 100);
 
         TesouraButton.setText("Tesoura");
+        TesouraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TesouraButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(TesouraButton);
         TesouraButton.setBounds(40, 133, 100, 30);
 
         PapelButton.setText("Papel");
+        PapelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PapelButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(PapelButton);
         PapelButton.setBounds(220, 133, 100, 30);
 
         PedraButton.setText("Pedra");
+        PedraButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PedraButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(PedraButton);
         PedraButton.setBounds(390, 133, 100, 30);
         jPanel1.add(PontPlayer);
-        PontPlayer.setBounds(540, 100, 0, 0);
+        PontPlayer.setBounds(540, 60, 50, 40);
         jPanel1.add(PontBot);
-        PontBot.setBounds(540, 250, 0, 0);
+        PontBot.setBounds(540, 250, 50, 40);
+
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/x.png"))); // NOI18N
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+        jButton2.setBounds(570, 0, 30, 30);
+
+        tryagain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/try.png"))); // NOI18N
+        tryagain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tryagainActionPerformed(evt);
+            }
+        });
+        jPanel1.add(tryagain);
+        tryagain.setBounds(540, 180, 40, 40);
+
+        jLabel1.setText("JOGADOR");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(520, 50, 60, 20);
+
+        jLabel2.setText("BOT");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(534, 240, 50, 14);
+
+        panelImage1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/View/dog.jpg"))); // NOI18N
+
+        javax.swing.GroupLayout panelImage1Layout = new javax.swing.GroupLayout(panelImage1);
+        panelImage1.setLayout(panelImage1Layout);
+        panelImage1Layout.setHorizontalGroup(
+            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+        panelImage1Layout.setVerticalGroup(
+            panelImage1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(panelImage1);
+        panelImage1.setBounds(0, 0, 500, 400);
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(500, 0, 80, 400);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 600, 400);
 
-        pack();
+        setSize(new java.awt.Dimension(600, 400));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TesouraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TesouraButtonActionPerformed
+        papel.setVisible(false);
+        pedra.setVisible(false);
+        PedraButton.setVisible(false);
+        PapelButton.setVisible(false);
+        TesouraButton.setVisible(false);
+        tryagain.setVisible(true);
+        Random gera = new Random();
+        int machi = 0, jog=3;
+
+    
+        machi =  gera.nextInt(3)+1;
+        if (machi == 2){
+            PapelBot.setVisible(true);
+        }else if (machi == 3 ){
+            TesouraBot.setVisible(true);
+        }else{
+            PedraBot.setVisible(true);
+        }  
+        
+         if(machi == 1 && jog == 1 || machi == 2 && jog ==2 || machi == 3 && jog ==3){
+         }else if(machi == 1 && jog == 2 || machi == 2 && jog == 3 || machi ==3 && jog ==1){
+        contplayer++;
+        player = Integer.toString(contplayer); 
+    }else{
+        contbot++;
+        bot = Integer.toString(contbot); 
+    }
+    PontBot.setText(bot);
+        PontPlayer.setText(player);
+    }//GEN-LAST:event_TesouraButtonActionPerformed
+
+    private void PapelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PapelButtonActionPerformed
+        tesoura.setVisible(false);
+        pedra.setVisible(false);
+        PedraButton.setVisible(false);
+        PapelButton.setVisible(false);
+        TesouraButton.setVisible(false);
+        tryagain.setVisible(true);
+           Random gera = new Random();
+        int machi = 0, jog=2;
+
+    
+        machi =  gera.nextInt(3)+1;
+        if (machi == 2){
+            PapelBot.setVisible(true);
+        }else if (machi == 3 ){
+            TesouraBot.setVisible(true);
+        }else{
+            PedraBot.setVisible(true);
+        }
+        if(machi == 1 && jog == 1 || machi == 2 && jog ==2 || machi == 3 && jog ==3){
+        }else if(machi == 1 && jog == 2 || machi == 2 && jog == 3 || machi ==3 && jog ==1){
+        contplayer++;
+        player = Integer.toString(contplayer); 
+    }else{
+        contbot++;
+        bot = Integer.toString(contbot); 
+        
+    }
+        PontBot.setText(bot);
+        PontPlayer.setText(player);
+    }//GEN-LAST:event_PapelButtonActionPerformed
+
+    private void PedraButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PedraButtonActionPerformed
+        papel.setVisible(false);
+        tesoura.setVisible(false);
+        PedraButton.setVisible(false);
+        PapelButton.setVisible(false);
+        TesouraButton.setVisible(false);
+        tryagain.setVisible(true);
+          Random gera = new Random();
+        int machi = 0, jog=1;
+
+    
+        machi =  gera.nextInt(3)+1;
+        if (machi == 2){
+            PapelBot.setVisible(true);
+        }else if (machi == 3 ){
+            TesouraBot.setVisible(true);
+        }else{
+            PedraBot.setVisible(true);
+        } 
+        if(machi == 1 && jog == 1 || machi == 2 && jog ==2 || machi == 3 && jog ==3){
+        }else if(machi == 1 && jog == 2 || machi == 2 && jog == 3 || machi ==3 && jog ==1){
+        contplayer++;
+        player = Integer.toString(contplayer); 
+    }else{
+        contbot++;
+        bot = Integer.toString(contbot); 
+    }
+      PontBot.setText(bot);
+        PontPlayer.setText(player);  
+    }//GEN-LAST:event_PedraButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void tryagainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tryagainActionPerformed
+       papel.setVisible(true);
+       tesoura.setVisible(true);
+       pedra.setVisible(true);
+       PedraButton.setVisible(true);
+        PapelButton.setVisible(true);
+        TesouraButton.setVisible(true);
+        PapelBot.setVisible(false);
+        PedraBot.setVisible(false);
+        TesouraBot.setVisible(false);
+        tryagain.setVisible(false);
+    }//GEN-LAST:event_tryagainActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,9 +396,15 @@ public class Jokenpo_GUI extends javax.swing.JFrame {
     private javax.swing.JLabel PontPlayer;
     private org.edisoncor.gui.panel.PanelImage TesouraBot;
     private javax.swing.JButton TesouraButton;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private org.edisoncor.gui.panel.PanelImage panelImage1;
     private org.edisoncor.gui.panel.PanelImage papel;
     private org.edisoncor.gui.panel.PanelImage pedra;
     private org.edisoncor.gui.panel.PanelImage tesoura;
+    private javax.swing.JButton tryagain;
     // End of variables declaration//GEN-END:variables
 }

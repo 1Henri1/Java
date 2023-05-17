@@ -5,6 +5,8 @@
  */
 package main;
 
+import View.Jokenpo_GUI;
+
 /**
  *
  * @author LAB03M05
@@ -15,7 +17,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+    new Jokenpo_GUI().setVisible(true);
     }
     
 }
